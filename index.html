@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Calculadora</title>
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body>
+            <header>
+                <div id="area-logo"><img src="img/logo2.png" alt=""></div>
+
+                <nav>
+                    <ul>
+                        <a href="index.html">
+                            <li>Home</li>
+                        </a>
+                        <li><a href="contato.html">Contato</a></li>
+                        <a href="sobre.html">
+                            <li>Sobre</li></a>
+                    </ul>
+                </nav>
+            </header>
+            <div id="container">
+                
+                <main>
+                    <div id="div-lateral-esquerda"><!-- cmc lateral esquerda--> 
+
+                        <div id="historico"><!-- comeco histórico-->
+                            <div class="fundo">
+                                <h2 id="tlt-calculadora">Histórico calculadora</h2>
+                                <div class="scrool">
+                                </div>
+                            </div>
+                       
+                        </div><!-- fim histórico-->  
+
+                        <div class="calculadora"><!--começo div calculadora-->
+                            <h2>Calculadora</h2>
+                            <p id="resultado"></p> <!-- é onde eu vou jogar o resultado da operações da calculadora -->
+                            
+                            <table>
+                                <tr> <!-- 1 linha-->    <!--O "C" é de clean, para isso eu ponho com um click ele chama a função clear, ele não precisa passar nenhum parâmetro, pois só ele que chama a função cleaar. Tenho que criar uma função clear, que vai emprimir literalmente nada no resultado-->
+                                    <td><button class="botao" onclick="clean()">C</button></td>
+                                    <td><button class="botao" onclick="back()"><</button></td>
+                                    <!-- como vou apgar os numeros ? 123, primeiro tem que ser o 3 e etc.   Com um cclique o botão vai chamar
+                                    a função    "back" , back de voltar, ele nao vai ser jogado nehum parametro, porque só ele que chama a função back 
+                                    -->
+                                    <td><button class="botao" name="sinais" onclick="insert('/')" value="/">/</button></td>
+                                    <td><button class="botao" onclick="insert('*')" value="*">X</button></td>
+                                </tr>
+                                
+                                <tr> <!-- 2 linha-->
+                                    <td><button class="botao" onclick="insert(7)" value="7">7</button></td>
+                                    <td><button class="botao" onclick="insert(8)">8</button></td>
+                                    <td><button class="botao" onclick="insert(9)">9</button></td>
+                                    <td><button class="botao" name="sinais" onclick="insert('-')">-</button></td>
+                                </tr>
+                                <tr> <!-- 3 linha-->
+                                    <td><button class="botao" onclick="insert(4)">4</button></td>
+                                    <td><button class="botao" onclick="insert(5)">5</button></td>
+                                    <td><button class="botao" onclick="insert(6)">6</button></td>
+                                    <td><button class="botao" name="sinais" onclick="insert('+')">+</button></td>
+                                </tr>
+                                <tr> <!-- 4 linha-->
+                                    <td><button class="botao" onclick="insert(1)">1</button></td>
+                                    <td><button class="botao" onclick="insert(2)">2</button></td>
+                                    <td><button class="botao" onclick="insert(3)">3</button></td>
+                                    <td rowspan="2"><button class="botao" style="height:106px;" onclick="calcular() ">=</button></td>
+                                </tr>
+                                <tr> <!-- 5 linha-->
+                                    <td colspan="2"><button class="botao" style="width:106px;" onclick="insert('0')">0</button></td>
+                                    <td><button class="botao" onclick="insert('.')">.</button></td>
+                                </tr>
+                                
+                            </table>
+                            
+                        </div><!-- fim div calculadora-->
+                   </div><!-- fim div lateral esquerda-->
+        
+                 
+
+                    <div id="lousa">
+                        <canvas width="550" height="300" id="drawingCanvas"></canvas>
+                        <div class="buttons">
+                            <input type="color" id="colorPicker">
+                            <button onclick="clearBoard()" class="clear">Limpar</button>
+                            <button id="undo" class="undo">Desfazer</button>
+                            <button id="redo" class="redo">Refazer</button>
+                        </div>
+                    </div>
+                </main>
+
+                <footer>
+                    <p>&copy; 2023 Nossa Empresa</p>
+                </footer>
+                
+            </div>
+            <script src="js/lousa.js"></script>
+
+        <script src="js/calculadora.js"></script>
+    </body>
+</html>
