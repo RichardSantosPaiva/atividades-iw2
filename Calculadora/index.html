@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Calculadora</title>
+
+        <style>
+            * {
+                margin:0px;
+                padding:0px;                
+            }
+
+            .fundo {
+                background-image: linear-gradient(45deg,black,crimson);
+                height: 100vw; /*vai estar com altura de 100% dos elementos*/
+                color:#FFF;
+                font-family: Arial, Helvetica, sans-serif;
+                text-align: center;
+            }
+
+            .calculadora {
+                position: absolute;
+                background-color: black;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+                border-radius: 15px; 
+                padding:15px;
+                background-color: rgba(0, 0, 0,0.8);
+                /* red green blue ALPHA (para por a transparencia na div, alpha "a", acrescento "",0".Alpha é atrasparencia ele vai de 0 a 1, 0 é nada, se colocar 0.1, 0.2, o 1 é o máximo) */
+            }
+
+            .botao {
+                width: 50px;
+                height: 50px;
+                font-size:25px;
+                cursor: pointer;
+                margin: 3px;
+                background-color: rgb(31,31,31);
+                border:none;
+                color: #FFF;
+            }
+
+            .botao:hover {
+                background-color:black;
+            }
+
+            #resultado {
+                width: 207px;
+                height: 30px;
+                margin: 5px;
+                background-color: #FFF;
+                color:black;
+                font-size: 25px;
+                text-align: right;
+                padding: 15px;
+            }
+            
+        </style>
+
+    </head>
+    <body>
+
+        <div class="fundo">
+            
+            <h1>Richard Paiva</h1>
+            
+            <div class="calculadora"><!--começo div calculadora-->
+
+                <h2>Calculadora</h2>
+                <p id="resultado"></p> <!-- é onde eu vou jogar o resultado da operações da calculadora -->
+                <!-- não tem nada porque não tem nenhum conteúdo, coloco qualquer coisa-->
+                <table>
+                   <!-- PRECISO CRIAR AS FUNÇÕES DE LIMPAR TUDO E APAGAR UM CARACTER POR VEZ E OS NÚMEROS-->
+                    <tr> <!-- 1 linha-->    <!--O "C" é de clean, para isso eu ponho com um click ele chama a função clear, ele não precisa passar nenhum parâmetro, pois só ele que chama a função cleaar. Tenho que criar uma função clear, que vai emprimir literalmente nada no resultado-->
+                        <td><button class="botao" onclick="clean()">C</button></td>
+                        <td><button class="botao" onclick="back()"><</button></td>
+                        <!-- como vou apgar os numeros ? 123, primeiro tem que ser o 3 e etc.   Com um cclique o botão vai chamar
+                        a função    "back" , back de voltar, ele nao vai ser jogado nehum parametro, porque só ele que chama a função back 
+                        -->
+                        <td><button class="botao" onclick="insert('/')">/</button></td>
+                        <td><button class="botao" onclick="insert('*')">X</button></td>
+                    </tr>
+                    
+                    <tr> <!-- 2 linha-->
+                        <td><button class="botao" onclick="insert(7)">7</button></td>
+                        <td><button class="botao" onclick="insert(8)">8</button></td>
+                        <td><button class="botao" onclick="insert(9)">9</button></td>
+                        <td><button class="botao" onclick="insert('-')">-</button></td>
+                    </tr>
+                    <tr> <!-- 3 linha-->
+                        <td><button class="botao" onclick="insert(4)">4</button></td>
+                        <td><button class="botao" onclick="insert(5)">5</button></td>
+                        <td><button class="botao" onclick="insert(6)">6</button></td>
+                        <td><button class="botao" onclick="insert('+')">+</button></td>
+                    </tr>
+                    <tr> <!-- 4 linha-->
+                        <td><button class="botao" onclick="insert(1)">1</button></td>
+                        <td><button class="botao" onclick="insert(2)">2</button></td>
+                        <td><button class="botao" onclick="insert(3)">3</button></td>
+                        <td rowspan="2"><button class="botao" style="height:106px;" onclick="calcular()">=</button></td>
+                    </tr>
+                    <tr> <!-- 5 linha-->
+                        <td colspan="2"><button class="botao" style="width:106px;" onclick="insert('0')">0</button></td>
+                        <td><button class="botao" onclick="insert('.')">.</button></td>
+                    </tr>
+                    
+                </table>
+                
+            </div><!-- fim div calculadora-->
+
+        </div>
+
+        <script>
+            /*
+            Preparando o código Function
+
+            Raciociene quando eu clicar no botão ele faça uma ação. Quando eu clicar num número que
+            //ele ensire o número no parágrafo. Com os cliques dos botoões com esses números que ele chame uma função
+            //no caso chamado insert, function insert()
+            
+                  function insert() {
+
+            }*/
+
+           /*
+            Função com parâmetro no bootão
+
+            Para todos os botoões que tenho números,  escrevo onclick="insert()", jogando um parâmetro
+            exe:onclick= insert('7'), de acordo com o número botão, jogando os devidos parâmetros para ele 
+            */
+
+
+            function insert(num) {
+                // agora vamos lidar a função insert, ela vai receber um parâmetro chamado num, pra saber que está vindo um numero
+
+                 var numero = document.getElementById('resultado').innerHTML; // document.getElementById('resultado').innerHTML= num; antes os números se perdem ao digitar ent eu faço:    var numero = document.getElementById('resultado').innerHTML= num;
+                // vou querer inserir o número no <p> e ele recebe o num. quando eu atualizar vai aparecer o número
+                document.getElementById('resultado').innerHTML= numero + num;// ele vai pegar o que já tem e o númerp que está no parâmetro, ele pega o que já tinha e estáapenas inserindo o próximo valor
+                }
+
+            function clean(){
+                document.getElementById('resultado').innerHTML="";
+                //chamo a função clear quando eu clico em no botão C de clear, ai emprimo uma mensagem vazia 
+                //para a váriavel resultado, uma vez que nada é somado com nada, é emprimido nada né.
+            }
+
+            function back(){
+                var resultado= document.getElementById('resultado').innerHTML;
+                document.getElementById('resultado').innerHTML = resultado.substring(0, resultado.length -1);
+                                                                // no iner html eu jogo a variavel
+                // resultado.substring()
+                //ele vai pegar todos os caracteres dentro do no nosso paragrafo e ele vai diminuir 1, 
+                // colocamos resultado.substring(0, resultado.length)-> com o length ele vai todos os caracteres dentro do p
+                //e ele vai diminuir 1 -> resultado.substring(resultado.length -1)
+            }
+
+
+            function calcular() {
+
+                var resultado = document.getElementById('resultado').innerHTML;
+
+                if(resultado){// se tiver alguma coisa dentro do paragrafo ele vai executar, caso contrario n vai ter nd para calcular
+                    document.getElementById('resultado').innerHTML = eval(resultado);
+                    // o eval vai computar todas as operações
+                }
+            }
+        </script>
+    </body>
+</html>
